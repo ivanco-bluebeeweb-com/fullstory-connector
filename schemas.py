@@ -10,7 +10,7 @@ class NoParams(BaseModel):
 class ConnectParams(BaseModel):
     label: str = Field(default="", description="Friendly connection label, e.g. Primary FullStory.")
     api_key: str = Field(description="API Key / Project Token")
-    base_url: str = Field(default="https://api.fullstory.com/v1", description="FullStory API base URL.")
+    base_url: str = Field(default="https://api.fullstory.com/v2", description="FullStory API base URL.")
 
 class ConnectionIdParams(BaseModel):
     connection_id: str = Field(default="", description="Connection identifier (empty uses active connection).")

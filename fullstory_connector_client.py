@@ -3,7 +3,7 @@ from __future__ import annotations
 import httpx
 from typing import Any, Optional
 
-DEFAULT_BASE = "https://api.fullstory.com/v1"
+DEFAULT_BASE = "https://api.fullstory.com/v2"
 
 class FullStoryClient:
     def __init__(self, api_key: str, base_url: str = ""):
@@ -19,7 +19,7 @@ class FullStoryClient:
     async def verify_auth(self) -> dict[str, Any]:
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             try:
-                resp = await client.get(f"{self.base_url}/events", headers=self.headers)
+                resp = await client.get(f"{self.base_url}/users", headers=self.headers)
                 if resp.status_code in (200, 201, 204):
                     return {"status": "ok", "data": resp.json() if resp.content else {}}
                 return {"status": "error", "error": f"HTTP {resp.status_code}: {resp.text}"}
